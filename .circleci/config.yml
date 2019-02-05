@@ -6,4 +6,12 @@ orbs:
 workflows:
   Hello Workflow:
     jobs:
-      - hello-build/hello-build
+      - hello-build/hello-build:
+          name: test
+      - hello-build/hello-build:
+          name: publish
+          requires: 
+          - test
+          filters:
+            branches:
+              only: master
