@@ -2,12 +2,16 @@ version: 2.1
 
 orbs:
   hello-build: circleci/hello-build@0.0.8
+  secret_scan: eddiewebb/secret_scan@0.0.3
 
 workflows:
   Hello Workflow:
     jobs:
+      - secret_scan/scan
       - hello-build/hello-build:
           name: test
+          requires:
+          - secret_scan/scan
       - hello-build/hello-build:
           name: publish
           requires: 
