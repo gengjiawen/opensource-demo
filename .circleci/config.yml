@@ -1,21 +1,19 @@
 version: 2.1
 
-orbs:
-  hello-build: circleci/hello-build@0.0.8
-  secret_scan: eddiewebb/secret_scan@0.0.3
+jobs:
+  js-test:
+    docker:
+      - image: gengjiawen/v8-build
+    working_directory: ~/repo
 
-workflows:
-  Hello Workflow:
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run: npx envinfo
+
+  leetcode:
     jobs:
-      - secret_scan/scan
-      - hello-build/hello-build:
-          name: test
-          requires:
-          - secret_scan/scan
-      - hello-build/hello-build:
-          name: publish
-          requires: 
-          - test
-          filters:
-            branches:
-              only: master
+      - js-test
