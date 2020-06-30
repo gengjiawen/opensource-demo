@@ -13,7 +13,8 @@ jobs:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
       - run: npx envinfo
-
-  leetcode:
+      
+workflows:
+  test-ci:
     jobs:
       - js-test
