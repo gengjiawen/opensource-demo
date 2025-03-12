@@ -1,4 +1,4 @@
-# opensource-demo
+# v8-demo
 
 [![CircleCI](https://circleci.com/gh/CircleCI-Public/opensource-demo.svg?style=svg)](https://circleci.com/gh/CircleCI-Public/opensource-demo)
 
